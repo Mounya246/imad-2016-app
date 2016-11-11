@@ -1,45 +1,29 @@
-//code foe counter
-var button=document.getElementById('counter');
-button.onclick=function()
-{
-    var request=new XMLHttpRequest();
-    request.onreadystatechange=function(){
-        if(request.readyState==XMLHttpRequest.DONE){
-            if(request.status==200){
-                var counter=request.responseText;
-                var span=document.getElementById('count');
-                    span.innerHTML=counter.toString();
-            }
-        }
-    };
-    request.open('GET','http://.imad.hasura-app.io/counter',true);
-    request.send(null);
-};
+body {
+    font-family: sans-serif;
+    margin-top: 60px;
+}
 
+.center {
+    text-align: center;
+}
 
-var submit=document.getElementById('submit_btn');
-submit.onclick=function()
-{
-     var request=new XMLHttpRequest();
-    request.onreadystatechange=function(){
-        if(request.readyState==XMLHttpRequest.DONE){
-            if(request.status==200){
-                var names=request.responseText;
-                names=JSON.parse(names);
-    var list='';
-    for(var i=0;i<names.length;i++)
-    {
-        list+='<li>'+names[i]+'</li>';
-    }
-    var ul=document.getElementById('namelist');
-    ul.innerHTML=list;
-            }
+.text-big {
+    font-size: 300%;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.img-medium {
+    height: 200px;
+}
+
+.container{
+            max-width: 800px;
+            margin: 0 auto;
+            color: #ec0e0e;
+            font-family: sans-serif;
+            padding-left: 20px;
+            padding-right: 20px;
         }
-    };
-    var nameInput=document.getElementById('name');
-    var name=nameInput.value;
-    request.open('GET','http://arusharma.imad.hasura-app.io/submit-name?name='+name,true);
-    request.send(null);
-    
-    
-};
