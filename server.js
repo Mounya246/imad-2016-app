@@ -13,45 +13,6 @@ var app = express();
 app.use(morgan('combined'));
 
 
-
-var articles=
-{
-    
-        'article-one':{
-            title:'Article One|MOUNYA',
-            heading:'Article One',
-            date:'10th October 2016',
-            content:`<p>
-                        This is the content for my first article..
-                    </p>
-                    <p>
-                        I am currently working in imad console.
-                    </p>`
-},
-'article-two':{
-    title:'Article Two|mounya',
-            heading:'Article Two',
-            date:'10th October 2016',
-            content:`<p>
-                        This is the content for my second article..
-                    </p>
-                    <p>
-                        I am currently working in imad console.
-                    </p>`
-},
-'article-three':{
-    title:'Article Three|mounya',
-            heading:'Article Three',
-            date:'10th October 2016',
-            content:`<p>
-                        This is the content for my third article..
-                    </p>
-                    <p>
-                        I am currently working in imad console.
-                    </p>`
-}
-};
-
 function createTemplate(data){
     var title=data.title;
     var heading=data.heading;
@@ -97,6 +58,7 @@ var pool = new Pool(config);
 
 app.get('/test-db',function(req,res)
 {
+    
     pool.query('SELECT*FROM test',function(err,result)
     {
         if(err)
@@ -128,7 +90,7 @@ app.get('/submit-name',function(req,res){
 
 app.get('/articles/:articleName', function (req, res) {
     
-    pool.query("SELECT * FROM article WHERE title ='"+req.params.articleName +"'",function(err,result)
+    pool.query("SELECT * FROM article WHERE title = $1",[req.params.articleName] ,function(err,result)
     {
         if(err)
         {
