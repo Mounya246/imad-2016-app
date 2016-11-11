@@ -144,7 +144,7 @@ app.get('/articles/:articleName', function (req, res) {
              else
              {
                  var articleDate=result.rows[0];
-                 res.send(createTemplate(articleDate));
+                 res.send(createTemplate(articleData));
              }
              
         }
