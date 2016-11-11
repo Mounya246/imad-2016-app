@@ -12,7 +12,7 @@ button.onclick=function()
             }
         }
     };
-    request.open('GET','http://arusharma.imad.hasura-app.io/counter',true);
+    request.open('GET','http://mounya246.imad.hasura-app.io/counter',true);
     request.send(null);
 };
 
